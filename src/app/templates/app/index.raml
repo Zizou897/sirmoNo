@@ -1,0 +1,115 @@
+#%RAML 1.0
+---
+title: SIMRO API
+baseUri: http://api.e-bookmobile.com/api/
+
+
+/prix-marche-grosisiste:
+  description: Cette Api donne la liste des produits grossiste du marché et est disponible uniquement sur get (get)
+  get:
+    description: liste des produits grossiste du marché
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:  !include  json/prix-grossiste.json
+    
+      404:
+        body: 
+          application/json:
+            example: |
+              {
+                "detail": "Not found."
+              }
+            
+  /prix-marche-grosisiste/id_fiche/detail:
+    description: Cette Api permet de cibler un prix par marche de grossiste
+    get:
+      description: example:'.../api/prix-marche-grosisiste/104259/detail/'
+      responses:
+        200:
+          body:
+            application/json:
+              example:  !include  json/detail-grossiste.json
+    
+        404:
+          body:
+            application/json:
+              example:
+                {
+                "detail": "Not found."
+                }
+       
+/produits:
+  description: Cette Api est uniquement utisable avec la methode get
+  get:
+    description: Renvoie la liste de tous les produits
+    responses: 
+      200:
+        body:
+          application/json:
+            example:  !include json/produit.json
+    
+      404:
+        body:
+          application/json:
+            example:
+              {
+                "detail": "Not found."
+              }
+
+  /id_produit/detail:
+    description: Cette Api donne le detail d'un produit
+    get:
+      description: example:'.../api/produit/3/detail/ '
+      responses: 
+        200:
+          body:
+            application/json:
+              example:  !include  json/detail-produit.json
+    
+        404:
+          body:
+            application/json:
+              example:
+                {
+                  "detail": "Not found."
+                }
+            
+/collecte-marche:
+  description: L'api renvoir une liste de tous les produits collectés et c'est methode get uniquement qui est possible sur cette api
+  get:
+    description: exemple:'.../api/collecte-marche/ '
+    responses:
+      200:
+        body: 
+          application/json:
+            example:  !include json/prix-collecte.json
+      404:
+        body:
+          application/json:
+            example:
+              {
+            "detail": "Not found."
+              }      
+
+  /collecte-marche/id_fiche/detail:
+    description: Cette Api donne le detail d'une collecte
+    get:
+      description: exxemple:'.../api/collecte-marche/id_fiche/detail'
+      responses:
+        200:
+          body:
+            application/json:
+              example:  !include  json/detail-collecte.json
+    
+        404:
+          body:
+            application/json:
+              example:
+                {
+                "detail": "Not found."
+                }
+                  
+          
+     
